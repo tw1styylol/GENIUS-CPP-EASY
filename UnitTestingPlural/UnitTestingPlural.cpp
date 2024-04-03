@@ -11,7 +11,7 @@ namespace UnitTestingPlural
 	public:
 		TEST_METHOD(TestAdd)
 		{
-			Set<int> set;
+			Plural<int> set;
 			// Add and check
 			set.add(5);
 			Assert::AreEqual(1, set.size());
@@ -32,7 +32,7 @@ namespace UnitTestingPlural
 
 		TEST_METHOD(TestAddRange)
 		{
-			Set<int> set;
+			Plural<int> set;
 			// Add range and check
 			int arr[] = { 1, 2, 3 };
 			set.addRange(arr, 3);
@@ -60,7 +60,7 @@ namespace UnitTestingPlural
 
 		TEST_METHOD(TestRemove)
 		{
-			Set<int> set;
+			Plural<int> set;
 			// Add
 			set.add(5);
 			set.add(10);
@@ -83,7 +83,7 @@ namespace UnitTestingPlural
 
 		TEST_METHOD(TestClear)
 		{
-			Set<int> set;
+			Plural<int> set;
 			set.clear();
 			// Check if empty
 			Assert::AreEqual(0, set.size());

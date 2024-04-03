@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 template <typename T>
-class Set
+class Plural
 {
 private:
     T* elements;
@@ -11,29 +11,29 @@ private:
     int capacity;
 
 public:
-    Set() : elements(new T[10]), _size(0), capacity(10) {}
+    Plural() : elements(new T[10]), _size(0), capacity(10) {}
 
-    Set(const Set<T>& other) : elements(new T[other.capacity]), _size(other._size), capacity(other.capacity)
+    Plural(const Plural<T>& other) : elements(new T[other.capacity]), _size(other._size), capacity(other.capacity)
     {
         for (int i = 0; i < _size; ++i) elements[i] = other.elements[i];
     }
 
-    Set(const T& x) : elements(new T[1]), _size(1), capacity(1)
+    Plural(const T& x) : elements(new T[1]), _size(1), capacity(1)
     {
         elements[0] = x;
     }
 
-    ~Set()
+    ~Plural()
     {
         delete[] elements;
     }
 
-    Set(T* arr, int n) : elements(new T[n]), _size(n), capacity(n)
+    Plural(T* arr, int n) : elements(new T[n]), _size(n), capacity(n)
     {
         for (int i = 0; i < n; ++i) this->elements[i] = arr[i];
     }
 
-    Set<T>& operator=(const Set<T>& other)
+    Plural<T>& operator=(const Plural<T>& other)
     {
         if (this != &other) {
             delete[] elements;
@@ -45,7 +45,7 @@ public:
         return *this;
     }
 
-    Set<T>& add(const T& x)
+    Plural<T>& add(const T& x)
     {
         if (!contain(x)) {
             if (_size >= capacity) {
@@ -62,13 +62,13 @@ public:
         return *this;
     }
 
-    Set<T>& addRange(T* arr, int n)
+    Plural<T>& addRange(T* arr, int n)
     {
         for (int i = 0; i < n; ++i) add(arr[i]);
         return *this;
     }
 
-    Set<T>& remove(const T& x)
+    Plural<T>& remove(const T& x)
     {
         int index = -1;
         for (int i = 0; i < _size; ++i) {
@@ -86,7 +86,7 @@ public:
         return *this;
     }
 
-    Set<T>& clear()
+    Plural<T>& clear()
     {
         _size = 0;
         return *this;
@@ -107,18 +107,18 @@ public:
         return false;
     }
 
-    Set<T> set_union(const Set<T>& other) const
+    Plural<T> set_union(const Plural<T>& other) const
     {
-        Set<T> result(*this);
+        Plural<T> result(*this);
         for (int i = 0; i < other._size; ++i) {
             result.add(other.elements[i]);
         }
         return result;
     }
 
-    Set<T> intersect(const Set<T>& other) const
+    Plural<T> intersect(const Plural<T>& other) const
     {
-        Set<T> result;
+        Plural<T> result;
         for (int i = 0; i < _size; ++i) {
             if (other.contain(elements[i])) {
                 result.add(elements[i]);
@@ -127,9 +127,9 @@ public:
         return result;
     }
 
-    Set<T> difference(const Set<T>& other) const
+    Plural<T> difference(const Plural<T>& other) const
     {
-        Set<T> result(*this);
+        Plural<T> result(*this);
         for (int i = 0; i < other._size; ++i) {
             result.remove(other.elements[i]);
         }
@@ -152,7 +152,7 @@ public:
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const Set<T>& S)
+std::ostream& operator<<(std::ostream& os, const Plural<T>& S)
 {
     S.printOn(os);
     return os;
