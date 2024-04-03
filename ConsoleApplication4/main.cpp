@@ -6,20 +6,29 @@ int main()
 {
     int a[5] = { 2, 8, 9, 3, 1 };
     Set<int> A(a, 5);
-    std::cout << "A = " << A << " has size " << A.size() << '\n';
-
+    std::cout << "Create array A = " << A << " has size " << A.size() << '\n';
+    std::cout << "Checking if the array(A) is displayed: {";
     for (int i = 0; i < A.size(); ++i) std::cout << ' ' << A.to_array()[i];
-    std::cout << '\n';
-
+    std::cout << " }" << '\n';
+    
+    std::cout << std::endl;
     int b[4] = { 5, 3, 2, 0 };
     Set<int> B(b, 4);
-    std::cout << "B = " << B << " has size " << B.size() << '\n';
+    std::cout << "Create array B = " << B << " has size " << B.size() << '\n';
+    std::cout << "Checking if the array(B) is displayed: {";
+    for (int i = 0; i < B.size(); ++i) std::cout << ' ' << B.to_array()[i] ;
+    std::cout <<" }" << '\n';
+
 
     Set<int> C = A.set_union(B);
+    std::cout << std::endl;
+    std::cout << "Start union: " << std::endl;
     std::cout << "A+B = " << C << " has size " << C.size() << '\n';
-    A.remove(1);
+    std::cout << std::endl;
+    std::cout << "Start removing: " << std::endl;
+    A.remove(2);
     std::cout << "A = " << A << " has size " << A.size() << '\n';
-    A.remove(0);
+    A.remove(9);
     std::cout << "A = " << A << " has size " << A.size() << '\n';
     A.remove(8);
     std::cout << "A = " << A << " has size " << A.size() << '\n';
@@ -32,18 +41,29 @@ int main()
     {
         std::cout << ex.what() << '\n';
     }
-
-    for (int i = 3; i < 37; i += 5) A.add(i);
+    std::cout << std::endl;
+    std::cout << "Adding new elements to plural:  " << std::endl;
+    for (int i = 5; i < 43; i += 4) A.add(i);
     std::cout << "A = " << A << " has size " << A.size() << '\n';
 
-    Set<int> P = A.intersect(B);
-    std::cout << "A*B = " << P << " has size " << P.size() << '\n';
+    std::cout << std::endl;
+    std::cout << "Start intersect: " << std::endl;
+    Set<int> ResultIntersect = A.intersect(B);
+    std::cout << "A*B = " << ResultIntersect << " has size " << ResultIntersect.size() << '\n';
 
-    Set<int> Q = A.difference(B.add(33));
-    std::cout << "A-B-{33} = " << Q << " has size " << Q.size() << '\n';
+    std::cout << std::endl;
+    std::cout << "Start difference: " << std::endl;
+    Set<int> DifferenceResult = A.difference(B);
+    std::cout << "A-B = " << DifferenceResult << " has size " << DifferenceResult.size() << '\n';
 
-    Q.clear();
-    std::cout << "Q = " << Q << " has size " << Q.size() << '\n';
+    std::cout << std::endl;
+    std::cout << "Start difference one element: " << std::endl;
+    Set<int> DifferenceResultOne = A.difference(B.add(33));
+    std::cout << "A-{33} = " << DifferenceResultOne << " has size " << DifferenceResultOne.size() << '\n';
+
+    std::cout << std::endl;
+    DifferenceResult.clear();
+    std::cout << "Clear plural = " << DifferenceResult << " has size " << DifferenceResult.size() << '\n';
 
     return 0;
 
