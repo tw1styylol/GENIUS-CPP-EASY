@@ -102,5 +102,171 @@ namespace UnitTestingPlural
 			Assert::IsTrue(set.contain(20));
 			Assert::IsTrue(set.contain(25));
 		}
+
+        TEST_METHOD(TestSetUnion)
+        {
+            // Positive numbers test
+            Plural<int> set1;
+            set1.add(1);
+            set1.add(2);
+            set1.add(3);
+
+            Plural<int> set2;
+            set2.add(2);
+            set2.add(3);
+            set2.add(4);
+
+            Plural<int> unionSet = set1.set_union(set2);
+            Assert::AreEqual(4, unionSet.size());
+            Assert::IsTrue(unionSet.contain(1));
+            Assert::IsTrue(unionSet.contain(2));
+            Assert::IsTrue(unionSet.contain(3));
+            Assert::IsTrue(unionSet.contain(4));
+
+            // Negative numbers test
+            Plural<int> set3;
+            set3.add(-1);
+            set3.add(-2);
+            set3.add(-3);
+
+            Plural<int> set4;
+            set4.add(-2);
+            set4.add(-3);
+            set4.add(-4);
+
+            Plural<int> unionSet2 = set3.set_union(set4);
+            Assert::AreEqual(4, unionSet2.size());
+            Assert::IsTrue(unionSet2.contain(-1));
+            Assert::IsTrue(unionSet2.contain(-2));
+            Assert::IsTrue(unionSet2.contain(-3));
+            Assert::IsTrue(unionSet2.contain(-4));
+
+            // Char test
+            Plural<char> set5;
+            set5.add('a');
+            set5.add('b');
+            set5.add('c');
+
+            Plural<char> set6;
+            set6.add('b');
+            set6.add('c');
+            set6.add('d');
+
+            Plural<char> unionSet3 = set5.set_union(set6);
+            Assert::AreEqual(4, unionSet3.size());
+            Assert::IsTrue(unionSet3.contain('a'));
+            Assert::IsTrue(unionSet3.contain('b'));
+            Assert::IsTrue(unionSet3.contain('c'));
+            Assert::IsTrue(unionSet3.contain('d'));
+        }
+
+        TEST_METHOD(TestIntersect)
+        {
+            // Positive numbers test
+            Plural<int> set1;
+            set1.add(1);
+            set1.add(2);
+            set1.add(3);
+
+            Plural<int> set2;
+            set2.add(2);
+            set2.add(3);
+            set2.add(4);
+
+            Plural<int> intersectSet = set1.intersect(set2);
+            Assert::AreEqual(2, intersectSet.size());
+            Assert::IsTrue(intersectSet.contain(2));
+            Assert::IsTrue(intersectSet.contain(3));
+
+            // Negative numbers test
+            Plural<int> set3;
+            set3.add(-1);
+            set3.add(-2);
+            set3.add(-3);
+
+            Plural<int> set4;
+            set4.add(-2);
+            set4.add(-3);
+            set4.add(-4);
+
+            Plural<int> intersectSet2 = set3.intersect(set4);
+            Assert::AreEqual(2, intersectSet2.size());
+            Assert::IsTrue(intersectSet2.contain(-2));
+            Assert::IsTrue(intersectSet2.contain(-3));
+
+            // Char test
+            Plural<char> set5;
+            set5.add('a');
+            set5.add('b');
+            set5.add('c');
+
+            Plural<char> set6;
+            set6.add('b');
+            set6.add('c');
+            set6.add('d');
+
+            Plural<char> intersectSet3 = set5.intersect(set6);
+            Assert::AreEqual(2, intersectSet3.size());
+            Assert::IsTrue(intersectSet3.contain('b'));
+            Assert::IsTrue(intersectSet3.contain('c'));
+        }
+
+        
+        TEST_METHOD(TestDifference)
+        {
+            // Positive numbers test
+            Plural<int> set1;
+            set1.add(1);
+            set1.add(2);
+            set1.add(3);
+
+            Plural<int> set2;
+            set2.add(2);
+            set2.add(3);
+            set2.add(4);
+
+            Plural<int> differenceSet = set1.difference(set2);
+            Assert::AreEqual(1, differenceSet.size());
+            Assert::IsTrue(differenceSet.contain(1));
+            Assert::IsFalse(differenceSet.contain(2));
+            Assert::IsFalse(differenceSet.contain(3));
+            Assert::IsFalse(differenceSet.contain(4));
+
+            // Negative numbers test
+            Plural<int> set3;
+            set3.add(-1);
+            set3.add(-2);
+            set3.add(-3);
+
+            Plural<int> set4;
+            set4.add(-2);
+            set4.add(-3);
+            set4.add(-4);
+
+            Plural<int> differenceSet2 = set3.difference(set4);
+            Assert::AreEqual(1, differenceSet2.size());
+            Assert::IsTrue(differenceSet2.contain(-1));
+            Assert::IsFalse(differenceSet2.contain(-2));
+            Assert::IsFalse(differenceSet2.contain(-3));
+            Assert::IsFalse(differenceSet2.contain(-4));
+
+            // Char test
+            Plural<char> set5;
+            set5.add('a');
+            set5.add('b');
+            set5.add('c');
+
+            Plural<char> set6;
+            set6.add('b');
+            set6.add('c');
+            set6.add('d');
+
+            Plural<char> differenceSet3 = set5.difference(set6);
+            Assert::AreEqual(1, differenceSet3.size());
+            Assert::IsTrue(differenceSet3.contain('a'));
+            Assert::IsFalse(differenceSet3.contain('b'));
+            Assert::IsFalse(differenceSet3.contain('c'));
+            Assert::IsFalse(differenceSet3.contain('d'));
+        }
 	};
 }
