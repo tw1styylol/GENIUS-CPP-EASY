@@ -65,6 +65,18 @@ int main()
     DifferenceResult.clear();
     std::cout << "Clear plural = " << DifferenceResult << " has size " << DifferenceResult.size() << '\n';
 
+
+    //Barabaliuk Vladyslav (ex 2)
+
+    int num1 = 2024;
+    std::cout << "Digits in " << num1 << ": " << digits(num1) << std::endl;
+
+    int num2 = 10110111;
+    std::cout << "Digits in " << num2 << ": " << digits(num2) << std::endl;
+
+    int num3 = 5;
+    std::cout << "Digits in " << num3 << ": " << digits(num3) << std::endl;
+
     return 0;
 
 }

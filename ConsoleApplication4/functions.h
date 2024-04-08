@@ -157,3 +157,23 @@ std::ostream& operator<<(std::ostream& os, const Plural<T>& S)
     S.printOn(os);
     return os;
 }
+
+
+// Barabaliuk Vladyvlav(ex 2)
+int digits(int n) 
+{
+    int count = 0;
+    // Array for check, if numbers was seen.
+    bool seen[10] = { false };
+
+    while (n > 0) {
+        int digit = n % 10;
+        if (!seen[digit]) {
+            seen[digit] = true;
+            count++;
+        }
+        n /= 10;
+    }
+
+    return count;
+}
