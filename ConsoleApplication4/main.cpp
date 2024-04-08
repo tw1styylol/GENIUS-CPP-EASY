@@ -76,6 +76,33 @@ int main()
 
     std::cout << "Count different numbers " << number << " : " << result << std::endl;
 
+    std::cout << "-------------------------------------------" << std::endl;
+    // Barabaliuk Vladyslav ex3
+    const char* str = "abracadabra";
+
+    std::cout << "First occurrence of each letter with preservation of their original order:: ";
+    Plural<char> unique = getUniqueLetters(str);
+    for (int i = 0; i < unique.size(); ++i)
+    {
+        std::cout << unique.to_array()[i];
+    }
+    std::cout << std::endl;
+
+    std::cout << "All letters that occur in the string at least twice: ";
+    Plural<char> recurring = getRecurringLetters(str);
+    for (int i = 0; i < recurring.size(); ++i)
+    {
+        std::cout << recurring.to_array()[i];
+    }
+    std::cout << std::endl;
+
+    std::cout << "All letters that occur only once: ";
+    Plural<char> singleOccurrence = getSingleOccurrenceLetters(str);
+    for (int i = 0; i < singleOccurrence.size(); ++i)
+    {
+        std::cout << singleOccurrence.to_array()[i];
+    }
+    std::cout << std::endl;
 
 
     

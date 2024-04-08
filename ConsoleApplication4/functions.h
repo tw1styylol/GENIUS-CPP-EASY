@@ -175,3 +175,66 @@ int digits(int n)
     return uniqueDigits.size(); 
 }
 
+// Barabaliuk Vladyslav ex3
+// for deleting dublicates
+Plural<char> getUniqueLetters(const char* str)
+{
+    Plural<char> uniqueLetters;
+    int len = strlen(str);
+    for (int i = 0; i < len; ++i)
+    {
+        if (!uniqueLetters.contain(str[i]))
+        {
+            uniqueLetters.add(str[i]);
+        }
+    }
+    return uniqueLetters;
+}
+
+// for letters that occur in the string at least twice
+Plural<char> getRecurringLetters(const char* str)
+{
+    Plural<char> recurringLetters;
+    Plural<char> uniqueLetters = getUniqueLetters(str);
+    int len = strlen(str);
+    for (int i = 0; i < uniqueLetters.size(); ++i) 
+    {
+        int count = 0;
+        for (int j = 0; j < len; ++j) {
+            if (uniqueLetters.to_array()[i] == str[j])
+            {
+                count++;
+            }
+        }
+        if (count >= 2) 
+        {
+            recurringLetters.add(uniqueLetters.to_array()[i]);
+        }
+    }
+    return recurringLetters;
+}
+
+// for letters that occut only one time
+Plural<char> getSingleOccurrenceLetters(const char* str)
+{
+    Plural<char> singleOccurrenceLetters;
+    Plural<char> uniqueLetters = getUniqueLetters(str);
+    int len = strlen(str);
+    for (int i = 0; i < uniqueLetters.size(); ++i)
+    {
+        int count = 0;
+        for (int j = 0; j < len; ++j)
+        {
+            if (uniqueLetters.to_array()[i] == str[j])
+            {
+                count++;
+            }
+        }
+        if (count == 1)
+        {
+            singleOccurrenceLetters.add(uniqueLetters.to_array()[i]);
+        }
+    }
+    return singleOccurrenceLetters;
+}
+
