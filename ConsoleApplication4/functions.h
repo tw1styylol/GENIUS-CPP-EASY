@@ -160,21 +160,18 @@ std::ostream& operator<<(std::ostream& os, const Plural<T>& S)
 
 
 // Barabaliuk Vladyvlav(ex 2)
-int digits(int n) 
+int digits(int n)
 {
-    int count = 0;
-    // Array for check, if numbers was seen.
-    bool seen[10] = { false };
+    Plural<int> uniqueDigits;
 
-    while (n > 0) {
-        int digit = n % 10;
-        if (!seen[digit]) {
-            seen[digit] = true;
-            count++;
-        }
-        n /= 10;
+    
+    while (n > 0) 
+    {
+        int digit = n % 10; 
+        uniqueDigits.add(digit);
+        n /= 10; 
     }
 
-    return count;
+    return uniqueDigits.size(); 
 }
 

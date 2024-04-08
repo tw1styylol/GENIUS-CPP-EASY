@@ -68,14 +68,13 @@ int main()
 
     //Barabaliuk Vladyslav (ex 2)
 
-    int num1 = 2024;
-    std::cout << "Digits in " << num1 << ": " << digits(num1) << std::endl;
+    int number;
+    std::cout << "Enter number: ";
+    std::cin >> number;
 
-    int num2 = 10110111;
-    std::cout << "Digits in " << num2 << ": " << digits(num2) << std::endl;
+    int result = digits(number); // Îá÷èñëşºìî ê³ëüê³ñòü ğ³çíèõ öèôğ
 
-    int num3 = 5;
-    std::cout << "Digits in " << num3 << ": " << digits(num3) << std::endl;
+    std::cout << "Count different numbers " << number << " : " << result << std::endl;
 
 
 
