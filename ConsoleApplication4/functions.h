@@ -238,3 +238,32 @@ Plural<char> getSingleOccurrenceLetters(const char* str)
     return singleOccurrenceLetters;
 }
 
+
+
+//Левицький Микола завдання 1 
+
+int stringLength(const char* str) {
+    int length = 0;
+    while (str[length] != '\0') {
+        ++length;
+    }
+    return length;
+}
+
+// Функція для підрахунку кількості цифр, знаків арифметичних операцій та дужок у рядку
+void countChars(const char* str, int& digitsCount, int& operatorsCount, int& parenthesesCount) {
+    digitsCount = operatorsCount = parenthesesCount = 0;
+    int len = stringLength(str);
+    for (int i = 0; i < len; ++i) {
+        if (isdigit(str[i])) {
+            ++digitsCount;
+        }
+        else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
+            ++operatorsCount;
+        }
+        else if (str[i] == '(' || str[i] == ')') {
+            ++parenthesesCount;
+        }
+    }
+}
+

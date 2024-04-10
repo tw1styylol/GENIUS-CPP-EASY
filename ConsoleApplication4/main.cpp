@@ -4,7 +4,7 @@
 
 int main()
 {
-    int a[5] = { 2, 8, 9, 3, 1 };
+    int a[5] = { 2, 8, 9, 3, 1 }; 
     Plural<int> A(a, 5);
     std::cout << "Create array A = " << A << " has size " << A.size() << '\n';
     std::cout << "Checking if the array(A) is displayed: {";
@@ -104,10 +104,32 @@ int main()
     }
     std::cout << std::endl;
 
-
-    
-
+    //Левицький микола завдання 1
+    std::cout << "______________________________________________________________-" << std::endl;
    
+
+    // введіть рядок арифметичного виразу
+    const char* expression = "3 + 4 * (2 - 1)";
+
+    int digitsCount, operatorsCount, parenthesesCount;
+    countChars(expression, digitsCount, operatorsCount, parenthesesCount);
+
+    std::cout << "Number of digits: " << digitsCount << std::endl;
+    std::cout << "Number of operators: " << operatorsCount << std::endl;
+    std::cout << "Number of parentheses: " << parenthesesCount << std::endl;
+
+    // Перевірка відповідності кількості дужок у виразі
+    if (parenthesesCount % 2 == 0) {
+        std::cout << "Parentheses are balanced." << std::endl;
+    }
+    else {
+        std::cout << "Parentheses are not balanced." << std::endl;
+    }
+
+
+
+
+
     return 0;
 
 }
