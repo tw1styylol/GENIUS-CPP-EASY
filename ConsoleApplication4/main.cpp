@@ -127,8 +127,89 @@ int main()
         std::cout << "Parentheses are not balanced." << std::endl;
     }
 
+    //Äóğêî Ğ ex 1
+
+    
+    const char* EXPRESSION = "2 * (3 + 4) - 5";
+
+    // Ï³äğàõóíîê ê³ëüêîñò³ öèôğ, îïåğàö³éíèõ çíàê³â, äóæîê òà âèğàç³â ó ğÿäêó
+    int digitCount = countDigits(EXPRESSION);
+    int operatorCount = countOperators(EXPRESSION);
+    int bracketCount = countBrackets(EXPRESSION);
+    int expressionCount = ArithmeticExpression(EXPRESSION);
+
+    // Ïåğåâ³ğêà â³äïîâ³äíîñò³ ê³ëüêîñò³ äóæîê ó ğÿäêó
+    bool bracketsBalanced = checkBrackets(EXPRESSION);
+
+    // Âèâåäåííÿ ğåçóëüòàòó
+    std::cout << "Digits: " << digitCount << std::endl;
+    std::cout << "Operators: " << operatorCount << std::endl;
+    std::cout << "Brackets: " << bracketCount << std::endl;
+    std::cout << "Arithmetic Expressions: " << expressionCount << std::endl;
+    std::cout << "Brackets balanced: " << (bracketsBalanced ? "Yes" : "No") << std::endl;
 
 
+
+        //ex6
+
+
+
+        addVisit(0, 1);
+        addVisit(0, 2);
+        addVisit(1, 0);
+        addVisit(2, 1);
+        addVisit(2, 3);
+        addVisit(3, 4);
+        addVisit(4, 0);
+        addVisit(4, 5);
+        addVisit(4, 6);
+        addVisit(5, 7);
+        addVisit(6, 7);
+        addVisit(7, 0);
+        addVisit(7, 8);
+        addVisit(8, 9);
+        addVisit(9, 10);
+        addVisit(10, 11);
+        addVisit(11, 12);
+        addVisit(12, 13);
+        addVisit(13, 14);
+        addVisit(14, 15);
+        addVisit(15, 16);
+        addVisit(16, 17);
+        addVisit(17, 18);
+        addVisit(18, 19);
+        addVisit(19, 20);
+
+        int minVisited = NUM_PEOPLE;
+        for (int i = 0; i < NUM_PEOPLE; ++i) 
+        {
+            int visitedFriends = countVisitedFriends(i);
+            if (visitedFriends < minVisited) 
+            {
+                minVisited = visitedFriends;
+            }
+        }
+
+        std::cout << "The least visited guests:" << std::endl;
+        for (int i = 0; i < NUM_PEOPLE; ++i) 
+        {
+            if (countVisitedFriends(i) == minVisited) 
+            {
+                std::cout << NAMES[i] << std::endl;
+            }
+        }
+
+        std::cout << "Visited all friends:" << std::endl;
+        for (int i = 0; i < NUM_PEOPLE; ++i) 
+        {
+            if (visitedAllFriends(i)) 
+            {
+                std::cout << NAMES[i] << std::endl;
+            }
+        }
+
+        std::cout << "Close circle of three friends: " << (hasCloseCircleOfThree() ? "Yes" : "No") << std::endl;
+        std::cout << "Close circle of four friends: " << (hasCloseCircleOfFour() ? "Yes" : "No") << std::endl;
 
 
     return 0;

@@ -242,28 +242,203 @@ Plural<char> getSingleOccurrenceLetters(const char* str)
 
 //Левицький Микола завдання 1 
 
-int stringLength(const char* str) {
+int stringLength(const char* str) 
+{
     int length = 0;
-    while (str[length] != '\0') {
+    while (str[length] != '\0') 
+    {
         ++length;
     }
     return length;
 }
 
 // Функція для підрахунку кількості цифр, знаків арифметичних операцій та дужок у рядку
-void countChars(const char* str, int& digitsCount, int& operatorsCount, int& parenthesesCount) {
+void countChars(const char* str, int& digitsCount, int& operatorsCount, int& parenthesesCount) 
+{
     digitsCount = operatorsCount = parenthesesCount = 0;
     int len = stringLength(str);
-    for (int i = 0; i < len; ++i) {
-        if (isdigit(str[i])) {
+    for (int i = 0; i < len; ++i) 
+    {
+        if (isdigit(str[i])) 
+        {
             ++digitsCount;
         }
-        else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
+        else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') 
+        {
             ++operatorsCount;
         }
-        else if (str[i] == '(' || str[i] == ')') {
+        else if (str[i] == '(' || str[i] == ')') 
+        {
             ++parenthesesCount;
         }
     }
 }
 
+//ДУРКО РОСТИСЛАВ ЗАВДАВННЯ 1-6//
+
+
+// Функція для підрахунку кількості цифр у рядку
+int countDigits(const char* EXPRESSION) 
+{
+    int digitCount = 0;
+    while (*EXPRESSION) 
+    {
+        if (*EXPRESSION >= '0' && *EXPRESSION <= '9')
+        {
+            ++digitCount;
+        }
+        ++EXPRESSION;
+    }
+    return digitCount;
+}
+
+// Функція для підрахунку кількості операційних знаків у рядку
+int countOperators(const char* expression) 
+{
+    int operatorCount = 0;
+    while (*expression) 
+    {
+        if (*expression == '+' || *expression == '-' || *expression == '*' || *expression == '/' || *expression == '%') {
+            ++operatorCount;
+        }
+        ++expression;
+    }
+    return operatorCount;
+}
+
+// Функція для підрахунку кількості дужок у рядку
+int countBrackets(const char* expression) 
+{
+    int bracketCount = 0;
+    while (*expression) 
+    {
+        if (*expression == '(' || *expression == ')') 
+        {
+            ++bracketCount;
+        }
+        ++expression;
+    }
+    return bracketCount;
+}
+
+// Функція для перевірки відповідності кількості дужок у рядку
+bool checkBrackets(const char* expression) 
+{
+    int bracketBalance = 0;
+    while (*expression) 
+    {
+        if (*expression == '(') 
+        {
+            ++bracketBalance;
+        }
+        else if (*expression == ')') 
+        {
+            --bracketBalance;
+            if (bracketBalance < 0) 
+            {
+                return false; // більше закриваючих дужок, ніж відкриваючих
+            }
+        }
+        ++expression;
+    }
+    return bracketBalance == 0; // повинна бути збалансована кількість дужок
+}
+
+int ArithmeticExpression(const char* EXPRESSION)
+{
+    int count = 0;
+    while (*EXPRESSION)
+    {
+        if (*EXPRESSION == '+' || *EXPRESSION == '-' || *EXPRESSION == '*' || *EXPRESSION == '/' || *EXPRESSION == '%')
+        {
+            ++count;
+        }
+        ++EXPRESSION;
+    }
+    return count;
+}
+
+
+
+//ex 6
+const int NUM_PEOPLE = 21;
+const std::string NAMES[NUM_PEOPLE] = 
+{
+    "Olexa", "Yulia", "Kateryna", "Vitaliy", "Artemiy", "Markiyan", "Vladyslav", "Oleg", "Kseniya", "Olha",
+    "Sofiya", "Andriy", "Ivan", "Yuriy", "Taras", "Kostyantyn", "Halyna", "Vasyl", "Solomiya", "Mykola", "Iryna"
+};
+
+bool visits[NUM_PEOPLE][NUM_PEOPLE] = {};
+
+void addVisit(int host, int guest) 
+{
+    visits[host][guest] = true;
+}
+
+int countVisitedFriends(int person) 
+{
+    int count = 0;
+    for (int i = 0; i < NUM_PEOPLE; ++i) 
+    {
+        if (visits[person][i]) 
+        {
+            ++count;
+        }
+    }
+    return count;
+}
+
+bool visitedAllFriends(int person) 
+{
+    for (int i = 0; i < NUM_PEOPLE; ++i) 
+    {
+        if (i != person && !visits[person][i]) 
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool hasCloseCircleOfThree() 
+{
+    for (int i = 0; i < NUM_PEOPLE; ++i) 
+    {
+        for (int j = 0; j < NUM_PEOPLE; ++j) 
+        {
+            for (int k = 0; k < NUM_PEOPLE; ++k) 
+            {
+                if (i != j && j != k && k != i &&
+                    visits[i][j] && visits[j][k] && visits[k][i] &&
+                    visits[i][k] == false && visits[j][i] == false && visits[k][j] == false) 
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool hasCloseCircleOfFour() 
+{
+    for (int i = 0; i < NUM_PEOPLE; ++i) 
+    {
+        for (int j = 0; j < NUM_PEOPLE; ++j) 
+        {
+            for (int k = 0; k < NUM_PEOPLE; ++k) 
+            {
+                for (int l = 0; l < NUM_PEOPLE; ++l) 
+                {
+                    if (i != j && j != k && k != l && l != i && i != k && j != l &&
+                        visits[i][j] && visits[j][k] && visits[k][l] && visits[l][i] &&
+                        visits[i][k] == false && visits[j][i] == false && visits[k][j] == false &&
+                        visits[l][k] == false && visits[i][l] == false && visits[j][l] == false) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
