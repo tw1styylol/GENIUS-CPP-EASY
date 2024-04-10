@@ -442,3 +442,101 @@ bool hasCloseCircleOfFour()
     }
     return false;
 }
+
+// Borysiuk Kostiantyn(ex 4)
+
+Plural<int> sieve_of_eratosthenes(int n)
+{
+    Plural<int> primes;
+
+    bool* is_prime = new bool[n + 1];
+    for (int i = 2; i <= n; ++i) {
+        is_prime[i] = true;
+    }
+
+    for (int p = 2; p * p <= n; ++p) {
+        if (is_prime[p]) {
+            for (int i = p * p; i <= n; i += p) {
+                is_prime[i] = false;
+            }
+        }
+    }
+
+    for (int i = 2; i <= n; ++i) {
+        if (is_prime[i]) {
+            primes.add(i);
+        }
+    }
+
+    delete[] is_prime;
+
+    return primes;
+}
+
+// Borysiuk Kostiantyn(ex 5)
+enum class Product { BREAD, BUTTER, MILK, CHEESE, MEAT, FISH, SALT, SUGAR, TEA, COFFEE, WATER };
+
+
+Plural<Product> productsInEveryStore(Plural<Product> stores[], int numStores) {
+    Plural<Product> commonProducts = stores[0];
+    for (int i = 1; i < numStores; ++i) {
+        commonProducts = commonProducts.intersect(stores[i]);
+    }
+    return commonProducts;
+}
+
+
+Plural<Product> productsInAnyStore(Plural<Product> stores[], int numStores) {
+    Plural<Product> anyStoreProducts = stores[0];
+    for (int i = 1; i < numStores; ++i) {
+        anyStoreProducts = anyStoreProducts.set_union(stores[i]);
+    }
+    return anyStoreProducts;
+}
+
+Plural<Product> productsAbsentInAllStores(Plural<Product> stores[], int numStores)
+{
+    Plural<Product> allProducts;
+    for (int i = 0; i < numStores; ++i)
+    {
+        allProducts = allProducts.set_union(stores[i]);
+    }
+
+    Plural<Product> absentProducts;
+    for (int i = 0; i < 11; ++i)
+    {
+        Product product = static_cast<Product>(i);
+        if (!allProducts.contain(product))
+        {
+            absentProducts.add(product);
+        }
+    }
+
+    return absentProducts;
+}
+
+
+
+void printProduct(std::ostream& os, Product product)
+{
+    switch (product) {
+    case Product::BREAD:   os << "BREAD";   break;
+    case Product::BUTTER:  os << "BUTTER";  break;
+    case Product::MILK:    os << "MILK";    break;
+    case Product::CHEESE:  os << "CHEESE";  break;
+    case Product::MEAT:    os << "MEAT";    break;
+    case Product::FISH:    os << "FISH";    break;
+    case Product::SALT:    os << "SALT";    break;
+    case Product::SUGAR:   os << "SUGAR";   break;
+    case Product::TEA:     os << "TEA";     break;
+    case Product::COFFEE:  os << "COFFEE";  break;
+    case Product::WATER:   os << "WATER";   break;
+    default:                os << "Unknown Product"; break;
+    }
+}
+
+std::ostream& operator<<(std::ostream& os, Product product)
+{
+    printProduct(os, product);
+    return os;
+}

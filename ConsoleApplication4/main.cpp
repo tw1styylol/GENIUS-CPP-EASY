@@ -212,6 +212,39 @@ int main()
         std::cout << "Close circle of four friends: " << (hasCloseCircleOfFour() ? "Yes" : "No") << std::endl;
 
 
+        // Borysiuk Kostiantyn(ex 4)
+
+        int n;
+        std::cout << "Enter the value of n: ";
+        std::cin >> n;
+        std::cout << std::endl;
+
+        Plural<int> prime_numbers = sieve_of_eratosthenes(n);
+
+        std::cout << "Prime numbers up to " << n << ": " << prime_numbers << std::endl;
+        std::cout << std::endl;
+
+        // Borysiuk Kostiantyn(ex 5)
+
+        Plural<Product> stores[3];
+
+        stores[0].add(Product::BREAD).add(Product::BUTTER).add(Product::MILK).add(Product::FISH);
+        stores[1].add(Product::BREAD).add(Product::CHEESE).add(Product::FISH).add(Product::BUTTER);
+        stores[2].add(Product::MILK).add(Product::SUGAR).add(Product::COFFEE).add(Product::BREAD);
+
+        Plural<Product> commonProducts = productsInEveryStore(stores, 3);
+        std::cout << "Products available in every store: " << commonProducts << std::endl;
+        std::cout << std::endl;
+
+
+        Plural<Product> anyStoreProducts = productsInAnyStore(stores, 3);
+        std::cout << "Products available in at least one store: " << anyStoreProducts << std::endl;
+        std::cout << std::endl;
+
+
+        Plural<Product> absentProducts = productsAbsentInAllStores(stores, 3);
+        std::cout << "Products absent in all stores: " << absentProducts << std::endl;
+
     return 0;
 
 }
