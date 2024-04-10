@@ -104,7 +104,7 @@ int main()
     }
     std::cout << std::endl;
 
-    //Левицький микола завдання 1
+    //Mykola Levytsky task 1
     std::cout << "______________________________________________________________-" << std::endl;
     std::cout << "Mykola Levytsky task 1" << std::endl;
    
@@ -245,7 +245,7 @@ int main()
         Plural<Product> absentProducts = productsAbsentInAllStores(stores, 3);
         std::cout << "Products absent in all stores: " << absentProducts << std::endl;
 
-        //Левицький Миколи завдання 2
+        //Mykola Levytsky task 2
         std::cout << "______________________________________________________________-" << std::endl;
         std::cout << "Mykola Levytsky task 2" << std::endl;
         // Перевірка функції digits
