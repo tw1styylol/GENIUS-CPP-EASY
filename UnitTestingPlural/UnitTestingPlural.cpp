@@ -296,38 +296,38 @@ namespace UnitTestingPlural
         {
             // Test case where all products are present in all stores
             Plural<Product> stores[3];
-            stores[0].add(Product::A);
-            stores[0].add(Product::B);
-            stores[0].add(Product::C);
+            stores[0].add(Product::BREAD);
+            stores[0].add(Product::BUTTER);
+            stores[0].add(Product::CHEESE);
 
-            stores[1].add(Product::A);
-            stores[1].add(Product::B);
-            stores[1].add(Product::C);
+            stores[1].add(Product::BREAD);
+            stores[1].add(Product::BUTTER);
+            stores[1].add(Product::CHEESE);
 
-            stores[2].add(Product::A);
-            stores[2].add(Product::B);
-            stores[2].add(Product::C);
+            stores[2].add(Product::BREAD);
+            stores[2].add(Product::BUTTER);
+            stores[2].add(Product::CHEESE);
 
             Plural<Product> absentProducts_all_present = productsAbsentInAllStores(stores, 3);
             Assert::AreEqual(0, absentProducts_all_present.size()); // Expecting no absent products
 
             // Test case where some products are absent in all stores
             Plural<Product> stores2[3];
-            stores2[0].add(Product::A);
-            stores2[0].add(Product::B);
+            stores2[0].add(Product::MILK);
+            stores2[0].add(Product::MEAT);
 
-            stores2[1].add(Product::A);
-            stores2[1].add(Product::C);
+            stores2[1].add(Product::MILK);
+            stores2[1].add(Product::FISH);
 
-            stores2[2].add(Product::B);
-            stores2[2].add(Product::C);
+            stores2[2].add(Product::MEAT);
+            stores2[2].add(Product::FISH);
 
             Plural<Product> absentProducts_some_absent = productsAbsentInAllStores(stores2, 3);
             Assert::AreEqual(4, absentProducts_some_absent.size()); // Expecting 4 absent products
-            Assert::IsTrue(absentProducts_some_absent.contain(Product::D));
-            Assert::IsTrue(absentProducts_some_absent.contain(Product::E));
-            Assert::IsTrue(absentProducts_some_absent.contain(Product::F));
-            Assert::IsTrue(absentProducts_some_absent.contain(Product::G));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::BUTTER));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::BREAD));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::COFFEE));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::SALT));
 
             // Test case where all products are absent in all stores
             Plural<Product> stores3[3];
