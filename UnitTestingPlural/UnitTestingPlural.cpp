@@ -268,5 +268,74 @@ namespace UnitTestingPlural
             Assert::IsFalse(differenceSet3.contain('c'));
             Assert::IsFalse(differenceSet3.contain('d'));
         }
+
+        TEST_METHOD(TestSieveOfEratosthenes)
+        {
+            // Test case for prime numbers up to 10
+            Plural<int> primes_up_to_10 = sieve_of_eratosthenes(10);
+            Assert::AreEqual(4, primes_up_to_10.size());
+            Assert::IsTrue(primes_up_to_10.contain(2));
+            Assert::IsTrue(primes_up_to_10.contain(3));
+            Assert::IsTrue(primes_up_to_10.contain(5));
+            Assert::IsTrue(primes_up_to_10.contain(7));
+
+            // Test case for prime numbers up to 20
+            Plural<int> primes_up_to_20 = sieve_of_eratosthenes(20);
+            Assert::AreEqual(8, primes_up_to_20.size());
+            Assert::IsTrue(primes_up_to_20.contain(2));
+            Assert::IsTrue(primes_up_to_20.contain(3));
+            Assert::IsTrue(primes_up_to_20.contain(5));
+            Assert::IsTrue(primes_up_to_20.contain(7));
+            Assert::IsTrue(primes_up_to_20.contain(11));
+            Assert::IsTrue(primes_up_to_20.contain(13));
+            Assert::IsTrue(primes_up_to_20.contain(17));
+            Assert::IsTrue(primes_up_to_20.contain(19));
+        }
+
+        TEST_METHOD(TestProductsAbsentInAllStores)
+        {
+            // Test case where all products are present in all stores
+            Plural<Product> stores[3];
+            stores[0].add(Product::A);
+            stores[0].add(Product::B);
+            stores[0].add(Product::C);
+
+            stores[1].add(Product::A);
+            stores[1].add(Product::B);
+            stores[1].add(Product::C);
+
+            stores[2].add(Product::A);
+            stores[2].add(Product::B);
+            stores[2].add(Product::C);
+
+            Plural<Product> absentProducts_all_present = productsAbsentInAllStores(stores, 3);
+            Assert::AreEqual(0, absentProducts_all_present.size()); // Expecting no absent products
+
+            // Test case where some products are absent in all stores
+            Plural<Product> stores2[3];
+            stores2[0].add(Product::A);
+            stores2[0].add(Product::B);
+
+            stores2[1].add(Product::A);
+            stores2[1].add(Product::C);
+
+            stores2[2].add(Product::B);
+            stores2[2].add(Product::C);
+
+            Plural<Product> absentProducts_some_absent = productsAbsentInAllStores(stores2, 3);
+            Assert::AreEqual(4, absentProducts_some_absent.size()); // Expecting 4 absent products
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::D));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::E));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::F));
+            Assert::IsTrue(absentProducts_some_absent.contain(Product::G));
+
+            // Test case where all products are absent in all stores
+            Plural<Product> stores3[3];
+            Plural<Product> absentProducts_all_absent = productsAbsentInAllStores(stores3, 3);
+            Assert::AreEqual(11, absentProducts_all_absent.size()); // Expecting all products to be absent
+            for (int i = 0; i < 11; ++i) {
+                Assert::IsTrue(absentProducts_all_absent.contain(static_cast<Product>(i)));
+            }
+        }
 	};
 }
