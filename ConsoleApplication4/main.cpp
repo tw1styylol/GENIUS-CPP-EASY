@@ -245,6 +245,18 @@ int main()
         Plural<Product> absentProducts = productsAbsentInAllStores(stores, 3);
         std::cout << "Products absent in all stores: " << absentProducts << std::endl;
 
+        //Левицький Миколи завдання 2
+        std::cout << "______________________________________________________________-" << std::endl;
+        std::cout << "Mykola Levytsky task 2" << std::endl;
+        // Перевірка функції digits
+        int number1 = 2024;
+        int number2 = 5;
+        int number3 = 10110111;
+
+        std::cout << "Number of unique digits in " << number1 << ": " << digitss(number1) << std::endl;
+        std::cout << "Number of unique digits in " << number2 << ": " << digitss(number2) << std::endl;
+        std::cout << "Number of unique digits in " << number3 << ": " << digitss(number3) << std::endl;
+
     return 0;
 
 }

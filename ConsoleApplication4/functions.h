@@ -540,3 +540,19 @@ std::ostream& operator<<(std::ostream& os, Product product)
     printProduct(os, product);
     return os;
 }
+
+//Левицький Микола завдання 2
+int digitss(int n)
+{
+    Plural<int> uniqueDigits;
+
+
+    while (n > 0)
+    {
+        int digit = n % 10;
+        uniqueDigits.add(digit);
+        n /= 10;
+    }
+
+    return uniqueDigits.size();
+}
